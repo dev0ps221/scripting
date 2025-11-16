@@ -131,9 +131,6 @@
                     {
                         elem("#render").innerHTML = ``
                         const params    = {}
-                        
-                        
-                        
                         const req = custom_req(url) 
                         params[param] = uploadvalidfile
                         req.upload(params, res => {
