@@ -150,6 +150,7 @@
                 if (url && method && params && (params.length)) 
                 {
                     params = make_params(params, optionals) 
+                    console.info('params are:', params) 
                     const req = custom_req(url) 
                     req[method](params, res => {
                         elem("#render").innerHTML = req.req.response
