@@ -78,6 +78,7 @@
                         if (!empty($headers)) {
                             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                         }
+                        echo $url;
                         $resp = curl_exec($ch);
                         if ($resp === false) {
                             echo "CURL ERROR: " . curl_error($ch);
