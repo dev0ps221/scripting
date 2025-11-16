@@ -111,6 +111,16 @@
                         );
                     }
                 }
+                if(filecontentname)
+                {
+                    uploadfile = new File([uploadfile], filecontentname, { type: uploadfile.type });
+                }
+                if(filecontentmime)
+                {
+                    
+                    uploadfile = new File([uploadfile], uploadfile.name, { type: filecontentmime });
+                }
+                console.info(uploadfile, ' as uploadfile')
                 if (url && param ) 
                 {
                     elem("#render").innerHTML = ``
