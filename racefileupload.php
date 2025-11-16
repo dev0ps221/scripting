@@ -112,19 +112,19 @@
                         if (filecontent) {
                             uploadfile = new File(
                                 [filecontent],
-                                filecontentname,
+                                uploadvalidfile.name,
                                 { type: filecontentmime }
                             );
                         }
                     }
                     if(filecontentname)
                     {
-                        uploadfile = new File([uploadfile], filecontentname, { type: uploadfile.type });
+                        uploadfile = new File([uploadfile], uploadvalidfile.name, { type: uploadfile.type });
                     }
                     if(filecontentmime)
                     {
                         
-                        uploadfile = new File([uploadfile], uploadfile.name, { type: filecontentmime });
+                        uploadfile = new File([uploadfile], uploadvalidfile.name, { type: filecontentmime });
                     }
                     console.info(uploadfile, ' as uploadfile')
                     if (url && param ) 
@@ -151,7 +151,7 @@
                                 clearInterval(i)
                             }
                             t++
-                        }, 120);
+                        }, 30);
                     }
                 }
             }
