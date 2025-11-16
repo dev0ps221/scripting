@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+from sys import argv
+import socket
+
+argc = len(argv)
+def patch_subdomain(subdomain,domain):
+    return f"{subdomain}.{domain}"
+def dns_lookup(domain,subdomains=[]):
+    if not subdomains:
+        domain = domain.strip().replace('\n','')
+        if not domain:
+            return None
+        try:
+            print(f"{domain} : {socket.gethostbyname(domain)}")
+            return f"{domain} : {socket.gethostbyname(domain)}"
+        except socket.gaierror:
+            # print(f"{domain} : [x]")
+            return None
+    else:
+        domains = iter_over_file(subdomains,patch_subdomain,domain)
+        results = [dns_lookup(domain)]
+        [results.append(dns_lookup(domain)) for domain in domains]
+        return results
+
+def iter_over_file(filename,func,subdomains):
+    domains = get_file_lines(filename)
+    results = []
+    if(callable(func)):
+        for domain in domains:
+            results.append(func(domain,subdomains))
+    return results
+def get_file_lines(filename):
+    try:
+        with open(filename, 'r') as file:
+            return file.readlines()
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(e)
+        return []
+filename    = None
+subdomains  = None
+if argc > 1:
+    filename = argv[1]
+    if argc > 2:
+        subdomains = argv[2]
+filename    =   filename    if filename     else    input("input domain file:\n> ")
+subdomains  =   subdomains  if subdomains   else    input("input subdomain file:\n> ")
+print("\nresults:\n")
+for domain_result in iter_over_file(filename,dns_lookup,subdomains):
+    if isinstance(domain_result, list):
+        for subdomain in domain_result:
+            True
+            # print(subdomain)
+    elif domain_result is not None:
+            True
+            # print(domain_result) 
